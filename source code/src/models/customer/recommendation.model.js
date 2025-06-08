@@ -22,4 +22,17 @@ async function getCoPurchased(product_variant_id, limit = 6) {
   return await query(sql, [product_variant_id, product_variant_id, limit])
 }
 
-module.exports = { getCoPurchased }
+async function getForUser(customer_id, limit = 6) {
+  const sql = `
+    SELECT od.product_variant_id, COUNT(*) AS cnt
+    FROM orders o
+    JOIN order_details od ON o.order_id = od.order_id
+    WHERE o.customer_id = ?
+    GROUP BY od.product_variant_id
+    ORDER BY cnt DESC
+    LIMIT ?
+  `
+  return await query(sql, [customer_id, limit])
+}
+
+module.exports = { getCoPurchased, getForUser }
