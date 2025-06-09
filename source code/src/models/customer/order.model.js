@@ -125,4 +125,37 @@ order.updateCancelOrder = async (order_id, callback) => {
     })
 }
 
+order.requestRefund = (order_id, reason, callback) => {
+  const sql = `
+    UPDATE orders
+       SET refund_status = 1,
+           refund_reason = ?,
+           refund_requested_at = CURRENT_TIMESTAMP()
+     WHERE order_id = ?
+  `
+  db.query(sql, [reason, order_id], (err, result) => {
+    if (err) {
+      console.error('Error requesting refund:', err);
+      return callback(err);
+    }
+    callback(null, result);
+  });
+}
+
+order.updateRefundStatus = (order_id, status, callback) => {
+  const sql = `
+    UPDATE orders
+       SET refund_status = ?,
+           refund_processed_at = CURRENT_TIMESTAMP()
+     WHERE order_id = ?
+  `
+  db.query(sql, [status, order_id], (err, result) => {
+    if (err) {
+      console.error('Error updating refund status:', err);
+      return callback(err);
+    }
+    callback(null, result);
+  });
+}
+
 module.exports = order
