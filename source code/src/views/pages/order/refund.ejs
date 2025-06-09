@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="theme-color" content="#2a7ee4">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="IE104.O12_Nhom2">
+  <meta name="description" content="Yêu cầu hoàn tiền đơn hàng tại TECHTWO.">
+
+  <link rel="shortcut icon" type="image/x-icon" href="/imgs/ico-logo-blue.png">
+  <link rel="stylesheet" href="/styles/pages/order/refund.css">
+
+  <title>TECHTWO. Yêu cầu Hoàn tiền</title>
+</head>
+
+<body>
+
+  <%- include('../../partials/header', { header: header, user: user }) %>
+  <%- include('../../partials/breadcrumb', {
+        breadcrumbs: [
+          { text: 'Đơn hàng', link: '/account/purchase' },
+          { text: 'Yêu cầu hoàn tiền', link: '' }
+        ]
+      }) %>
+
+  <main class="refund-container">
+    <div class="refund-box">
+      <h1>Yêu cầu hoàn tiền cho đơn #DH00<%= purchase.order_id %></h1>
+
+      <div class="order-summary">
+        <p><strong>Người đặt:</strong> <%= purchase.order_name %></p>
+        <p>
+          <strong>Tổng tiền:</strong>
+          <% let totalAmount = 0;
+             purchase.order_details.forEach(d => totalAmount += d.order_detail_price_after); %>
+          <%= formatFunction.toCurrency(totalAmount) %>
+        </p>
+      </div>
+
+      <form id="refundForm">
+        <input type="hidden" name="order_id" value="<%= purchase.order_id %>">
+        <div class="form-group">
+          <label for="reason">Lý do yêu cầu hoàn tiền</label>
+          <textarea id="reason" name="reason" rows="5" required placeholder="Mô tả chi tiết..."></textarea>
+        </div>
+        <div class="actions">
+          <button type="button" class="btn-cancel" id="btnCancel">Hủy</button>
+          <button type="submit" class="btn-submit">Gửi yêu cầu</button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <%- include('../../components/success-modal', { action: 'Gửi yêu cầu hoàn tiền' }) %>
+  <%- include('../../components/scrollup') %>
+  <%- include('../../partials/footer') %>
+  <%- include('../../partials/app-bar') %>
+
+  <script src="/scripts/pages/order/refund.js"></script>
+  <script src="/scripts/partials/header.js"></script>
+</body>
+
+</html>
