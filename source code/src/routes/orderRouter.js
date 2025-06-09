@@ -16,4 +16,7 @@ router.post('/information', authMiddleware.isLoggedIn, orderController.informati
 router.get('/payment', authMiddleware.isLoggedIn, orderController.payment)
 router.post('/cancel_order', authMiddleware.isLoggedIn, orderController.cancelOrder)
 
+router.get  ('/refund', authMiddleware.isLoggedIn, orderController.refundPage);
+router.post ('/refund', authMiddleware.isLoggedIn, orderController.refundRequest);
+
 module.exports = router;
