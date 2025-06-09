@@ -5,6 +5,7 @@ const router = express.Router();
 const authAdminController = require('../controllers/admin/authAdminController.js')
 const dashboardAdminController = require('../controllers/admin/dashboardAdminController.js')
 const cateAdminController = require('../controllers/admin/cateAdminController.js')
+const refundAdminController = require('../controllers/admin/refundAdminController');
 
 // import middleware
 const adminMiddleware = require('../middleware/adminMiddleware.js')
