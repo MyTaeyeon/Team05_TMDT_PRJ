@@ -1,0 +1,30 @@
+DATABASE_HOST = 'your-database-host.com'
+DATABASE_USER = root
+DATABASE_PASSWORD =
+DATABASE = ie104_group2
+
+JWT_SECRET = 'your-secret'
+JWT_EXPIRES = 'your-jwt-expiration-time' # e.g., '1h', '2d'
+JWT_COOKIE_EXPIRES = '7d' # Cookie expiration time
+
+# Momo API credentials (replace with your actual credentials)
+MOMO_PARTNER_CODE='YOUR_PARTNER_CODE' # Replace with your actual Momo partner code
+MOMO_ACCESS_KEY='YOUR_ACCESS'
+MOMO_SECRET_KEY='my-secret-key'
+
+# Momo API Endpoints
+# Change NODE_ENV to 'production' when deploying to production server
+NODE_ENV='development' # Set to 'development' for local testing
+MOMO_API_ENDPOINT_TEST='https://test-payment.momo.vn/v2/gateway/api/create' # Use actual test URL
+MOMO_API_ENDPOINT_PROD=https://payment.momo.vn/v2/gateway/api/create # Use actual production URL
+
+# Momo Redirect and IPN URLs
+MOMO_REDIRECT_URL='https://your-redirect-url.com' # Replace with your actual redirect URL
+MOMO_IPN_URL='https://your-ipn-url.com' # Replace with your actual IPN URL
+
+# Local Tunnel Base URL (REQUIRED FOR LOCALHOST TESTING WITH MOMO IPN/REDIRECT)
+# !! IMPORTANT: This URL changes every time you restart localtunnel !!
+# !! Update this value with the new URL provided by localtunnel every time !!
+LOCAL_TUNNEL_BASE_URL= https://shiny-pianos-like.loca.lt
+
+# lt --port 3000

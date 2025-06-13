@@ -10,7 +10,7 @@
 
 	<link rel="shortcut icon" type="image/x-icon" href="/imgs/ico-logo-blue.png">
 	<link rel="stylesheet" href="/styles/pages/order/momo.css">
-
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 	<title>TECHTWO. Thanh toán MoMo</title>
 </head>
 
@@ -59,7 +59,8 @@
 		<div class="momo-qr">
 			<h4>Quét mã QR để thanh toán</h4>
 			<div class="scanning-box">
-				<img src="/imgs/transaction/momo_qr.png" alt="momo_qr">
+				<!-- <img src="/imgs/transaction/momo_qr.png" alt="momo_qr"> -->
+				 <div id="qrcode"></div>
 				<div class="image-container"></div>
 				<div class="border">
 				</div>
@@ -84,6 +85,15 @@
 
 	<script src="/scripts/pages/order/momo.js"></script>
 	<script src="/scripts/partials/header.js"></script>
+	<script>
+		const payUrl = "<%= qrCodeUrl %>"; // hoặc qrCodeUrl nếu bạn muốn ưu tiên deeplink
+		new QRCode(document.getElementById("qrcode"), {
+			text: payUrl,
+			width: 220,
+			height: 220,
+			correctLevel: QRCode.CorrectLevel.H
+		});
+	</script>
 
 </body>
 
